@@ -2,7 +2,13 @@ package com.xmu.exp7_mongo.util;
 
 import com.xmu.exp7_mongo.bo.OnSale;
 import com.xmu.exp7_mongo.bo.Product;
+import com.xmu.exp7_mongo.controller.dto.OrderDto;
+import com.xmu.exp7_mongo.controller.dto.OrderItemDto;
 import com.xmu.exp7_mongo.controller.dto.ProductDto;
+import com.xmu.exp7_mongo.controller.vo.OrderItemVo;
+import com.xmu.exp7_mongo.controller.vo.OrderVo;
+import com.xmu.exp7_mongo.dao.bo.Order;
+import com.xmu.exp7_mongo.dao.bo.OrderItem;
 import com.xmu.exp7_mongo.entity.OnSalePo;
 import com.xmu.exp7_mongo.entity.ProductPo;
 
@@ -75,5 +81,68 @@ public class CloneFactory {
         return target;
     }
 
+    /**
+     * 将 OrderVo 转成 Order
+     * @param target
+     * @param source
+     * @return
+     */
+    public static  Order copy(Order target, OrderVo source){
+        return Order.builder()
+                .consignee(source.getConsignee())
+                .address(source.getAddress())
+                .message(source.getMessage())
+                .regionId(source.getRegionId())
+                .mobile(source.getMobile())
+                .build();
+    }
 
+    /**
+     * 将 OrderItemVo 转成 OrderItem
+     * @param target
+     * @param source
+     * @return
+     */
+    public static OrderItem copy(OrderItem target, OrderItemVo source){
+        return OrderItem.builder()
+                .actId(source.getActId())
+                .couponId(source.getCouponId())
+                .onsaleId(source.getOnsaleId())
+                .quantity(source.getQuantity())
+                .build();
+    }
+
+    /**
+     * 将 Order 转成 OrderDto
+     * @param target
+     * @param source
+     * @return
+     */
+    public static OrderDto copy(OrderDto target, Order source){
+        return OrderDto.builder()
+                .id(source.getId())
+                .address(source.getAddress())
+                .mobile(source.getMobile())
+                .orderSn(source.getOrderSn())
+                .consignee(source.getConsignee())
+                .build();
+    }
+
+    /**
+     * 将 OrderItem 转成 OrderItemDto
+     * @param target
+     * @param source
+     * @return
+     */
+    public static OrderItemDto copy(OrderItemDto target, OrderItem source){
+        return OrderItemDto.builder()
+                .id(source.getId())
+                .onsaleId(source.getOnsaleId())
+                .price(source.getPrice())
+                .quantity(source.getQuantity())
+                .name(source.getName())
+                .point(source.getPoint())
+                .discountPrice(source.getDiscountPrice())
+                .build();
+    }
 }
