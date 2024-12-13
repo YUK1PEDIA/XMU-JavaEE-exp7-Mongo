@@ -6,7 +6,7 @@ management:
 
 server:
   #服务端口号
-  port: 8080
+  port: 8082
   tomcat:
     threads:
       #最大工作线程数
