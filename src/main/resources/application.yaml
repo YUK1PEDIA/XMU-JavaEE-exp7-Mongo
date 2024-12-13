@@ -23,10 +23,6 @@ spring:
       port: 6379
       host: redis
       password: Yukipedia1234
-
-
-
-
   datasource:
     #JDBC驱动
     driver-class-name: com.mysql.cj.jdbc.Driver
